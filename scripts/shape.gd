@@ -4,7 +4,7 @@ var is_dragging: bool = false :
 	set(value):
 		is_dragging = value
 		### move the dragged item to the front of rendering then revert that when dropping
-		self.z_index = 10 if value == true else 0
+		self.z_index = 10 if value == true else 1
 		### remove collision from free shapes if dragging, add it back if not
 		set_collision_layer_value(1, !value)
 
