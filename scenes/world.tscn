@@ -1,11 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbaymf0js8pvm"]
+[gd_scene load_steps=6 format=3 uid="uid://dbaymf0js8pvm"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_w73xf"]
-[ext_resource type="PackedScene" uid="uid://xj68qh4mouc4" path="res://scenes/walls.tscn" id="2_e5v75"]
-[ext_resource type="PackedScene" uid="uid://7rhspeoxsodw" path="res://scenes/shape_spawner.tscn" id="3_y0oc1"]
+[ext_resource type="PackedScene" uid="uid://bj62gd16rmxin" path="res://scenes/shape.tscn" id="2_1w3ef"]
+[ext_resource type="PackedScene" path="res://scenes/walls.tscn" id="2_e5v75"]
+[ext_resource type="PackedScene" uid="uid://wer5cy6da82u" path="res://scenes/belt.tscn" id="3_enb70"]
+[ext_resource type="PackedScene" path="res://scenes/shape_spawner.tscn" id="3_y0oc1"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_w73xf")
+
+[node name="Belt" parent="." instance=ExtResource("3_enb70")]
+position = Vector2(638, 577)
+
+[node name="Shape" parent="." instance=ExtResource("2_1w3ef")]
+position = Vector2(754, 332)
+
+[node name="Shape2" parent="." instance=ExtResource("2_1w3ef")]
+position = Vector2(338, 162)
 
 [node name="Walls" parent="." instance=ExtResource("2_e5v75")]
 

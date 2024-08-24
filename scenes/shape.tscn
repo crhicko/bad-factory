@@ -21,4 +21,6 @@ texture = ExtResource("2_klk6v")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickBox"]
 shape = SubResource("RectangleShape2D_sh7bj")
 
+[connection signal="area_entered" from="ClickBox" to="." method="_on_click_box_area_entered"]
+[connection signal="area_exited" from="ClickBox" to="." method="_on_click_box_area_exited"]
 [connection signal="input_event" from="ClickBox" to="." method="_on_click_box_input_event"]
