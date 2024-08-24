@@ -1,5 +1,5 @@
 extends Node
-
+class_name ShapeSpawner
 #todo
 #grab all potential shapes to spawn via a group/flag/filter on ready
 
@@ -9,6 +9,8 @@ extends Node
 	set(value):
 		SPAWN_RATE = value
 		$Timer.wait_time = SPAWN_RATE
+		
+signal spawned(unit)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -38,6 +40,9 @@ func spawnShape():
 	shapeInstance.position = Vector2(xPos, yPos);
 	
 	world.add_child(shapeInstance)
+	
+	spawned.emit(shapeInstance)
+	
 	pass
 
 

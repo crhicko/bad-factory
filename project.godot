@@ -29,6 +29,7 @@ droppable="These are spotsto drop things on"
 2d_physics/layer_1="shapes"
 2d_physics/layer_2="walls"
 2d_physics/layer_3="droppable"
+2d_physics/layer_4="endzone"
 
 [rendering]
 
