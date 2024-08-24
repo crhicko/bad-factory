@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbaymf0js8pvm"]
+[gd_scene load_steps=4 format=3 uid="uid://dbaymf0js8pvm"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_w73xf"]
 [ext_resource type="PackedScene" uid="uid://xj68qh4mouc4" path="res://scenes/walls.tscn" id="2_e5v75"]
+[ext_resource type="PackedScene" uid="uid://7rhspeoxsodw" path="res://scenes/shape_spawner.tscn" id="3_y0oc1"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_w73xf")
 
 [node name="Walls" parent="." instance=ExtResource("2_e5v75")]
+
+[node name="ShapeSpawner" parent="." node_paths=PackedStringArray("world") instance=ExtResource("3_y0oc1")]
+world = NodePath("..")
