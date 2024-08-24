@@ -1,4 +1,5 @@
 extends RigidBody2D
+class_name Shape
 
 var is_dragging: bool = false :
 	set(value):
@@ -11,6 +12,7 @@ var is_dragging: bool = false :
 var droppable_target: Node2D
 
 signal released(target, mouse_pos, node)
+signal died(amount)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -53,4 +55,6 @@ func _on_click_box_area_exited(area: Area2D) -> void:
 		
 func die():
 	print("IM DYING OVA HERE")
+	died.emit(20)
+	##could have the score controller free it but that could be messy if other things need to know about it
 	queue_free()

@@ -32,10 +32,9 @@ func handle_drop(target: Node, body: Node2D, mouse_pos: Vector2) -> void:
 
 func _on_end_zone_area_entered(area: Area2D) -> void:
 	print_debug("Endzone entered")
-
-
-func _on_end_zone_body_entered(body: Node2D) -> void:
-	print_debug("Body entered endzone")
+	var body: Node2D = area.get_parent()
 	if on_belt.has(body):
 		on_belt.remove_at(on_belt.find(body))
 		body.die()
+
+	

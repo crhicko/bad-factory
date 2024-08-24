@@ -36,10 +36,10 @@ position = Vector2(-1.5, -0.5)
 shape = SubResource("RectangleShape2D_0ve14")
 
 [node name="EndZone" type="Area2D" parent="."]
+collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndZone"]
 position = Vector2(720, 0)
 shape = SubResource("RectangleShape2D_bjw43")
 
 [connection signal="area_entered" from="EndZone" to="." method="_on_end_zone_area_entered"]
-[connection signal="body_entered" from="EndZone" to="." method="_on_end_zone_body_entered"]

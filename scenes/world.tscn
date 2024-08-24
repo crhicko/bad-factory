@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbaymf0js8pvm"]
+[gd_scene load_steps=6 format=3 uid="uid://dbaymf0js8pvm"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_w73xf"]
 [ext_resource type="PackedScene" uid="uid://d3cm5ojkav182" path="res://scenes/walls.tscn" id="2_e5v75"]
 [ext_resource type="PackedScene" uid="uid://wer5cy6da82u" path="res://scenes/belt.tscn" id="3_enb70"]
 [ext_resource type="PackedScene" uid="uid://rsh8egq4v8gt" path="res://scenes/shape_spawner.tscn" id="3_y0oc1"]
+[ext_resource type="Script" path="res://scripts/controllers/score_controller.gd" id="5_uiaax"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_w73xf")
@@ -15,3 +16,7 @@ position = Vector2(638, 577)
 
 [node name="ShapeSpawner" parent="." node_paths=PackedStringArray("world") instance=ExtResource("3_y0oc1")]
 world = NodePath("..")
+
+[node name="ScoreController" type="Node" parent="." node_paths=PackedStringArray("ShapeSpawner")]
+script = ExtResource("5_uiaax")
+ShapeSpawner = NodePath("../ShapeSpawner")
