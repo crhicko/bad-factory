@@ -5,10 +5,15 @@ extends Node
 
 @export var shapesToSpawn: Array[PackedScene] = [];
 @export var world:Node;
+@export var SPAWN_RATE: float = 3 :
+	set(value):
+		SPAWN_RATE = value
+		$Timer.wait_time = SPAWN_RATE
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$Timer.wait_time = SPAWN_RATE
 	pass # Replace with function body.
 
 

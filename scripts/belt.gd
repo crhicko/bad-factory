@@ -15,15 +15,19 @@ func _process(delta: float) -> void:
 		obj.position.x += BELT_SPEED
 	pass
 
-func is_droppable() -> bool:
-	return true;
 	
 ## mouse_pos is in global coordinates
-func drop(body: Node2D, mouse_pos: Vector2) -> void:
-	self.add_child(body)
-	body.position = Vector2(mouse_pos.x - global_position.x, 0)
-	if !on_belt.has(body):
-		on_belt.append(body)
+func handle_drop(target: Node, body: Node2D, mouse_pos: Vector2) -> void:
+	if target == self:
+		body.get_parent().remove_child(body)
+		self.add_child(body)
+		body.position = Vector2(mouse_pos.x - global_position.x, 0)
+		target.z_index = 1
+		if !on_belt.has(body):
+			on_belt.append(body)
+		body.set_collision_layer_value(1, false)
+	elif on_belt.has(body):
+		on_belt.remove_at(on_belt.find(body))
 
 
 func _on_end_zone_area_entered(area: Area2D) -> void:

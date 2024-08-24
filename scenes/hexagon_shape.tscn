@@ -7,6 +7,7 @@
 size = Vector2(128, 128)
 
 [node name="Shape" type="RigidBody2D"]
+collision_mask = 7
 mass = 0.59
 script = ExtResource("1_kjnjp")
 
