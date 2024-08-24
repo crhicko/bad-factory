@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbaymf0js8pvm"]
+[gd_scene load_steps=4 format=3 uid="uid://dbaymf0js8pvm"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_w73xf"]
 [ext_resource type="PackedScene" uid="uid://bj62gd16rmxin" path="res://scenes/shape.tscn" id="2_1w3ef"]
+[ext_resource type="PackedScene" uid="uid://wer5cy6da82u" path="res://scenes/belt.tscn" id="3_enb70"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_w73xf")
 
+[node name="Belt" parent="." instance=ExtResource("3_enb70")]
+position = Vector2(550, 596)
+
 [node name="Shape" parent="." instance=ExtResource("2_1w3ef")]
-position = Vector2(553, 357)
-mass = 0.001
-gravity_scale = 0.0
+position = Vector2(754, 332)

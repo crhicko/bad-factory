@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://wer5cy6da82u"]
+
+[ext_resource type="Texture2D" uid="uid://b1smblv2k7gck" path="res://assets/sprites/conveyor-top.png" id="1_o62ic"]
+[ext_resource type="Shader" path="res://shader/belt.gdshader" id="1_pasvo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ii7q"]
+shader = ExtResource("1_pasvo")
+
+[node name="Belt" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_5ii7q")
+scale = Vector2(10, 10)
+texture = ExtResource("1_o62ic")
+region_enabled = true
+region_rect = Rect2(0, 0, 500, 6)
