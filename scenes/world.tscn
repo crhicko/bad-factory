@@ -1,15 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbaymf0js8pvm"]
+[gd_scene load_steps=3 format=3 uid="uid://dbaymf0js8pvm"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_w73xf"]
-[ext_resource type="PackedScene" uid="uid://bj62gd16rmxin" path="res://scenes/shape.tscn" id="2_1w3ef"]
 [ext_resource type="PackedScene" uid="uid://xj68qh4mouc4" path="res://scenes/walls.tscn" id="2_e5v75"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_w73xf")
 
 [node name="Walls" parent="." instance=ExtResource("2_e5v75")]
-
-[node name="Shape" parent="." instance=ExtResource("2_1w3ef")]
-position = Vector2(168, 122)
-mass = 1.0
-gravity_scale = 0.3
