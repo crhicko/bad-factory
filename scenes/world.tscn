@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbaymf0js8pvm"]
+[gd_scene load_steps=3 format=3 uid="uid://dbaymf0js8pvm"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_w73xf"]
+[ext_resource type="PackedScene" uid="uid://bj62gd16rmxin" path="res://scenes/shape.tscn" id="2_1w3ef"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_w73xf")
+
+[node name="Shape" parent="." instance=ExtResource("2_1w3ef")]
+position = Vector2(553, 357)
+mass = 0.001
+gravity_scale = 0.0
