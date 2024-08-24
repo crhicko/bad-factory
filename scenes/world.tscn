@@ -8,7 +8,10 @@
 script = ExtResource("1_w73xf")
 
 [node name="Belt" parent="." instance=ExtResource("3_enb70")]
-position = Vector2(550, 596)
+position = Vector2(638, 577)
 
 [node name="Shape" parent="." instance=ExtResource("2_1w3ef")]
 position = Vector2(754, 332)
+
+[node name="Shape2" parent="." instance=ExtResource("2_1w3ef")]
+position = Vector2(338, 162)
