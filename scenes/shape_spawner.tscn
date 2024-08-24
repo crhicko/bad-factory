@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://7rhspeoxsodw"]
+
+[ext_resource type="Script" path="res://scripts/shape_spawner.gd" id="1_e8cob"]
+[ext_resource type="PackedScene" uid="uid://bj62gd16rmxin" path="res://scenes/shape.tscn" id="2_5fg3n"]
+
+[node name="ShapeSpawner" type="Node"]
+script = ExtResource("1_e8cob")
+shapesToSpawn = Array[PackedScene]([ExtResource("2_5fg3n")])
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
