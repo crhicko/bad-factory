@@ -35,7 +35,7 @@ func spawnShape():
 	
 	var colors = [Color(1, 0, 0), Color(0, 1, 0), Color(0, 0, 1)];
 	
-	var sprite2d = shapeInstance.get_node("Sprite2D");
+	var sprite2d = shapeInstance.find_child("Sprite2D");
 	sprite2d.set_modulate(colors[randi_range(0, colors.size() - 1)])
 	world.add_child(shapeInstance)
 	pass

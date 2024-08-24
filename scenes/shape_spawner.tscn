@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxfsft1o3nlfh"]
+[gd_scene load_steps=5 format=3 uid="uid://cxfsft1o3nlfh"]
 
 [ext_resource type="Script" path="res://scripts/shape_spawner.gd" id="1_e8cob"]
 [ext_resource type="PackedScene" uid="uid://bj62gd16rmxin" path="res://scenes/shape.tscn" id="2_5fg3n"]
+[ext_resource type="PackedScene" uid="uid://b5tmxxfs8gnb" path="res://scenes/triangle_shape.tscn" id="3_4h68w"]
+[ext_resource type="PackedScene" uid="uid://cl7lscxvibhf1" path="res://scenes/hexagon_shape.tscn" id="4_jklpn"]
 
 [node name="ShapeSpawner" type="Node"]
 script = ExtResource("1_e8cob")
-shapesToSpawn = Array[PackedScene]([ExtResource("2_5fg3n")])
+shapesToSpawn = Array[PackedScene]([ExtResource("2_5fg3n"), ExtResource("3_4h68w"), ExtResource("4_jklpn")])
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
