@@ -1,0 +1,41 @@
+extends Node
+
+#todo
+#grab all potential shapes to spawn via a group/flag/filter on ready
+
+@export var shapesToSpawn: Array[PackedScene] = [];
+@export var world:Node;
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+
+func spawnShape():
+	#todo
+	#determine / select shape to spawn
+	#determine spawning type
+	#add random direction / velocity on certain shape spawning types
+
+	var xPos = randf_range(0, get_viewport().size[0])
+	var yPos = 0;
+	
+	var shapeToSpawn = shapesToSpawn[randi_range(0, shapesToSpawn.size() - 1)];
+
+	var shapeInstance = shapeToSpawn.instantiate()
+	shapeInstance.position = Vector2(xPos, yPos);
+	
+	world.add_child(shapeInstance)
+	pass
+
+
+func _on_timer_timeout() -> void:
+	spawnShape();
+	pass # Replace with function body.
