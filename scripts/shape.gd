@@ -10,7 +10,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if is_dragging:
-		position = get_viewport().get_mouse_position() + Vector2(0, $Sprite2D.texture.get_size().y/2)
+		position = get_viewport().get_mouse_position() + Vector2(0, $Sprite2D.texture.get_size().y / 2)
 	
 	pass
 
