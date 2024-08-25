@@ -1,4 +1,5 @@
 extends RigidBody2D
+class_name Shape
 
 var is_dragging: bool = false :
 	set(value):
@@ -8,9 +9,10 @@ var is_dragging: bool = false :
 		### remove collision from free shapes if dragging, add it back if not
 		set_collision_layer_value(1, !value)
 
-var droppable_target: Node2D
+var droppable_target: Dropbox
 
 signal released(target, mouse_pos, node)
+signal died(body, amount)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,25 +37,31 @@ func _on_click_box_input_event(viewport: Node, event: InputEvent, shape_idx: int
 			is_dragging = false
 			#self.z_index = 1
 			#set_collision_mask_value(1, true)
-			drop_in(droppable_target, event.global_position)
+			if droppable_target != null:
+				drop_in(droppable_target, event.global_position)
 			### Velocity is maintained from the belt so to stop it freaking out when dragging it off, reset its velocity
 			if droppable_target == null:
 				linear_velocity = Vector2.ZERO
 
-func drop_in(target: Node, mouse_pos: Vector2):
+func drop_in(target: Dropbox, mouse_pos: Vector2):
 	##Could also use the area 2d of the droppable object and check the exited signal
-	get_tree().call_group("droppable", "handle_drop", target, self, mouse_pos)
+	target.handle_drop(target, self, mouse_pos)
+	#get_tree().call_group("droppable", "handle_drop", target, self, mouse_pos)
 
 func _on_click_box_area_entered(area: Area2D) -> void:
-	if area.is_in_group("droppable"):
-		#print_debug("its droppable")
-		droppable_target = area.get_parent()
+	#if area.is_in_group("droppable"):
+	print_debug("its droppable")
+	if area is Dropbox:
+		droppable_target = area
 
 func _on_click_box_area_exited(area: Area2D) -> void:
-	if area.is_in_group("droppable"):
-		#print_debug("its not droppable anymore")
+	#if area.is_in_group("droppable"):
+	print_debug("its not droppable anymore")
+	if area is Dropbox:
 		droppable_target = null
 		
-func die():
+func die(score: int):
 	print("IM DYING OVA HERE")
+	died.emit(self, score)
+	##could have the score controller free it but that could be messy if other things need to know about it
 	queue_free()

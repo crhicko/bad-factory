@@ -1,5 +1,5 @@
 extends Node
-
+class_name ShapeSpawner
 #todo
 #grab all potential shapes to spawn via a group/flag/filter on ready
 
@@ -9,6 +9,8 @@ extends Node
 	set(value):
 		SPAWN_RATE = value
 		$Timer.wait_time = SPAWN_RATE
+		
+signal spawned(unit)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -30,7 +32,7 @@ func spawnShape():
 	#determine spawning type
 	#add random direction / velocity on certain shape spawning types
 
-	var xPos = randf_range(0, get_viewport().size[0])
+	var xPos = randf_range(0, get_viewport().size[0] *.6)
 	var yPos = 0;
 	
 	var shapeToSpawn = shapesToSpawn[randi_range(0, shapesToSpawn.size() - 1)];
@@ -43,6 +45,9 @@ func spawnShape():
 	var sprite2d = shapeInstance.find_child("Sprite2D");
 	sprite2d.set_modulate(colors[randi_range(0, colors.size() - 1)])
 	world.add_child(shapeInstance)
+	
+	spawned.emit(shapeInstance)
+	
 	pass
 
 
