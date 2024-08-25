@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjw0eau02rnum"]
+
+[ext_resource type="Script" path="res://scripts/trash_bin.gd" id="1_jubn7"]
+[ext_resource type="Texture2D" uid="uid://bs02fxueaorpd" path="res://assets/sprites/trashbin.png" id="2_vhgdo"]
+[ext_resource type="PackedScene" uid="uid://bmeba1p65sd0i" path="res://scenes/dropbox_component.tscn" id="3_e281f"]
+[ext_resource type="AudioStream" uid="uid://c8652so07tuyg" path="res://assets/sound/effects/crumple.mp3" id="4_e53pu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2cstk"]
+size = Vector2(68, 88)
+
+[node name="TrashBin" type="Node2D" node_paths=PackedStringArray("dropbox_component", "audio_player")]
+script = ExtResource("1_jubn7")
+dropbox_component = NodePath("DropboxComponent")
+audio_player = NodePath("AudioStreamPlayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_vhgdo")
+
+[node name="DropboxComponent" parent="." node_paths=PackedStringArray("parent_node") instance=ExtResource("3_e281f")]
+parent_node = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DropboxComponent"]
+shape = SubResource("RectangleShape2D_2cstk")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_e53pu")

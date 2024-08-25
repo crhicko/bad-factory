@@ -31,7 +31,7 @@ func spawnShape():
 	#determine spawning type
 	#add random direction / velocity on certain shape spawning types
 
-	var xPos = randf_range(0, get_viewport().size[0])
+	var xPos = randf_range(0, get_viewport().size[0] *.6)
 	var yPos = 0;
 	
 	var shapeToSpawn = shapesToSpawn[randi_range(0, shapesToSpawn.size() - 1)];

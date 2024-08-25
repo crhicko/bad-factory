@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbaymf0js8pvm"]
+[gd_scene load_steps=8 format=3 uid="uid://dbaymf0js8pvm"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_w73xf"]
 [ext_resource type="PackedScene" uid="uid://d3cm5ojkav182" path="res://scenes/walls.tscn" id="2_e5v75"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://rsh8egq4v8gt" path="res://scenes/shape_spawner.tscn" id="3_y0oc1"]
 [ext_resource type="Script" path="res://scripts/controllers/score_controller.gd" id="5_uiaax"]
 [ext_resource type="Script" path="res://scripts/controllers/ui_controller.gd" id="6_2m8u1"]
+[ext_resource type="PackedScene" uid="uid://cjw0eau02rnum" path="res://scenes/trash_bin.tscn" id="7_q3hey"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_w73xf")
@@ -35,3 +36,6 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Score:"
+
+[node name="TrashBin" parent="." instance=ExtResource("7_q3hey")]
+position = Vector2(1211, 412)

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmeba1p65sd0i"]
+
+[ext_resource type="Script" path="res://scripts/dropbox.gd" id="1_lowkq"]
+
+[node name="DropboxComponent" type="Area2D" groups=["droppable"]]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_lowkq")

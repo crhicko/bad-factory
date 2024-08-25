@@ -1,22 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://wer5cy6da82u"]
+[gd_scene load_steps=9 format=3 uid="uid://wer5cy6da82u"]
 
 [ext_resource type="Script" path="res://scripts/belt.gd" id="1_1u6ni"]
 [ext_resource type="Texture2D" uid="uid://b1smblv2k7gck" path="res://assets/sprites/conveyor-top.png" id="1_o62ic"]
 [ext_resource type="Shader" path="res://shader/belt.gdshader" id="1_pasvo"]
-[ext_resource type="Script" path="res://scripts/dropbox.gd" id="4_ohr1t"]
+[ext_resource type="PackedScene" uid="uid://bmeba1p65sd0i" path="res://scenes/dropbox_component.tscn" id="4_bchj4"]
+[ext_resource type="AudioStream" uid="uid://c0bla6dh0h1ki" path="res://assets/sound/effects/chaching.mp3" id="5_jk1mh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5ii7q"]
 shader = ExtResource("1_pasvo")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ve14"]
-size = Vector2(1303, 59)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bjw43"]
 size = Vector2(56, 98)
 
-[node name="Belt" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ve14"]
+size = Vector2(1303, 59)
+
+[node name="Belt" type="Node2D" node_paths=PackedStringArray("dropbox_component", "audio_player")]
 z_index = 1
 script = ExtResource("1_1u6ni")
+dropbox_component = NodePath("DropboxComponent")
+audio_player = NodePath("AudioStreamPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_repeat = 2
@@ -26,20 +29,21 @@ texture = ExtResource("1_o62ic")
 region_enabled = true
 region_rect = Rect2(0, 0, 130, 6)
 
-[node name="Dropbox" type="Area2D" parent="." groups=["droppable"]]
-collision_layer = 4
-collision_mask = 0
-script = ExtResource("4_ohr1t")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Dropbox"]
-position = Vector2(-1.5, -0.5)
-shape = SubResource("RectangleShape2D_0ve14")
-
 [node name="EndZone" type="Area2D" parent="."]
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndZone"]
 position = Vector2(720, 0)
 shape = SubResource("RectangleShape2D_bjw43")
+
+[node name="DropboxComponent" parent="." node_paths=PackedStringArray("parent_node") instance=ExtResource("4_bchj4")]
+parent_node = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DropboxComponent"]
+position = Vector2(-1.5, -0.5)
+shape = SubResource("RectangleShape2D_0ve14")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_jk1mh")
 
 [connection signal="area_entered" from="EndZone" to="." method="_on_end_zone_area_entered"]
