@@ -10,7 +10,7 @@ func _ready() -> void:
 
 func _on_item_received(target: Node, body: Node2D, mouse_pos: Vector2):
 	audio_player.play()
-	body.queue_free()
+	body.die(0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

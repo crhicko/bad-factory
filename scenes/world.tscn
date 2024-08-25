@@ -13,6 +13,7 @@ script = ExtResource("1_w73xf")
 
 [node name="Belt" parent="." instance=ExtResource("3_enb70")]
 position = Vector2(638, 577)
+BELT_SPEED = 1
 
 [node name="Walls" parent="." instance=ExtResource("2_e5v75")]
 

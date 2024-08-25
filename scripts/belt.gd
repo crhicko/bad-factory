@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var dropbox_component: Dropbox
-@export var audio_player: AudioStreamPlayer
+@export var success_audio_player: AudioStreamPlayer
 
 var on_belt: Array = []
 @export var BELT_SPEED: int = 1
@@ -29,16 +29,20 @@ func _on_item_received(area: Dropbox, body: Node2D, mouse_pos: Vector2) -> void:
 		if !on_belt.has(body):
 			on_belt.append(body)
 		body.set_collision_layer_value(1, false)
+		body.died.connect(_on_body_died)
 	elif on_belt.has(body):
 		on_belt.remove_at(on_belt.find(body))
 
+func _on_body_died(body, amount: int):
+	if on_belt.has(body):
+		on_belt.remove_at(on_belt.find(body))
 
 func _on_end_zone_area_entered(area: Area2D) -> void:
 	print_debug("Endzone entered")
 	var body: Node2D = area.get_parent()
 	if on_belt.has(body):
 		on_belt.remove_at(on_belt.find(body))
-		audio_player.play()
-		body.die()
+		success_audio_player.play()
+		body.die(20)
 
 	

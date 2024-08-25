@@ -25,7 +25,7 @@ func _on_spawned(entity: Node2D) -> void:
 		print("connecting entity")
 		entity.died.connect(_on_died)
 		
-func _on_died(amount: int):
+func _on_died(body: Shape, amount: int):
 	score += amount
 	print("Score: ", score)
 	score_changed.emit(score)
