@@ -29,14 +29,29 @@ world = NodePath("..")
 script = ExtResource("5_uiaax")
 shape_spawner = NodePath("../ShapeSpawner")
 
-[node name="UIController" type="CanvasLayer" parent="." node_paths=PackedStringArray("score_controller")]
+[node name="UIController" type="CanvasLayer" parent="." node_paths=PackedStringArray("score_controller", "timer")]
 script = ExtResource("6_2m8u1")
 score_controller = NodePath("../ScoreController")
+timer = NodePath("../GameController/Timer")
 
-[node name="ScoreLabel" type="Label" parent="UIController"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="CenterContainer" type="CenterContainer" parent="UIController"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.0
+offset_right = 24.0
+offset_bottom = 42.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIController/CenterContainer"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="UIController/CenterContainer/VBoxContainer"]
+layout_mode = 2
 text = "Score:"
+
+[node name="TimeLabel" type="Label" parent="UIController/CenterContainer/VBoxContainer"]
+layout_mode = 2
 
 [node name="GameOverScreen" type="CanvasLayer" parent="."]
 layer = 2
@@ -73,7 +88,7 @@ position = Vector2(1211, 412)
 script = ExtResource("8_agi75")
 score_controller = NodePath("../ScoreController")
 game_over_screen = NodePath("../GameOverScreen")
-enable = false
+enable_timer = false
 
 [node name="Timer" type="Timer" parent="GameController"]
 wait_time = 5.0

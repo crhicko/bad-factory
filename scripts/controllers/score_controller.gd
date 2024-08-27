@@ -28,7 +28,7 @@ func _on_spawned(entity: Node2D) -> void:
 func _on_died(body: Shape, amount: int):
 	## this var gets set by the game controller when the game ends
 	if !enable_scoring:
-		pass
+		return
 	score += amount
 	print("Score: ", score)
 	score_changed.emit(score)

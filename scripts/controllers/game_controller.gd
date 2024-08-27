@@ -3,12 +3,12 @@ extends Node
 @export var score_controller: ScoreController
 @export var game_over_screen: CanvasLayer
 @onready var timer: Timer = $Timer
-@export var enable: bool = true
+@export var enable_timer: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
-	if !enable: timer.stop()
+	if !enable_timer: timer.stop()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
