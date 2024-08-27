@@ -24,10 +24,11 @@ func _process(delta: float) -> void:
 	pass
 
 
-
 func spawnShape():
 	#todo
 	#determine / select shape to spawn
+		#select a random resource color
+		#and a random resource shape
 	#determine spawning type
 	#add random direction / velocity on certain shape spawning types
 
@@ -39,6 +40,10 @@ func spawnShape():
 	var shapeInstance = shapeToSpawn.instantiate()
 	shapeInstance.position = Vector2(xPos, yPos);
 	
+	var colors = [Color(1, 0, 0), Color(0, 1, 0), Color(0, 0, 1)];
+	
+	var sprite2d = shapeInstance.find_child("Sprite2D");
+	sprite2d.set_modulate(colors[randi_range(0, colors.size() - 1)])
 	world.add_child(shapeInstance)
 	
 	spawned.emit(shapeInstance)

@@ -1,3 +1,5 @@
+#TODO - find bug aroudn the layers - cant click and drag new shapes onto the treadmill
+
 extends RigidBody2D
 class_name Shape
 
@@ -19,11 +21,14 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#var x = get_node("Sprite2D");
+	#print(x);
 	if is_dragging:
-		global_position = get_viewport().get_mouse_position() + Vector2(0, $Sprite2D.texture.get_size().y / 3)
-		
+		global_position = get_viewport().get_mouse_position() + Vector2(0, find_child("Sprite2D").texture.get_size().y / 3)
+
 
 func _on_click_box_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -56,7 +61,7 @@ func _on_click_box_area_exited(area: Area2D) -> void:
 	print_debug("its not droppable anymore")
 	if area is Dropbox:
 		droppable_target = null
-		
+
 func die(score: int):
 	print("IM DYING OVA HERE")
 	died.emit(self, score)
