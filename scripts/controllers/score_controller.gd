@@ -4,7 +4,7 @@ class_name ScoreController
 @export_group("Required Nodes")
 @export var shape_spawner: ShapeSpawner
 
-
+var enable_scoring: bool = true
 var score: int = 0
 
 signal score_changed(amount)
@@ -26,6 +26,9 @@ func _on_spawned(entity: Node2D) -> void:
 		entity.died.connect(_on_died)
 		
 func _on_died(body: Shape, amount: int):
+	## this var gets set by the game controller when the game ends
+	if !enable_scoring:
+		pass
 	score += amount
 	print("Score: ", score)
 	score_changed.emit(score)

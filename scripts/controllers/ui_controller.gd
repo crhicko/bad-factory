@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 class_name UiController
 
 @export var score_controller: ScoreController
@@ -6,7 +6,7 @@ class_name UiController
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	score_controller.score_changed.connect(_on_score_changed)
-	pass # Replace with function body.
+	$ScoreLabel.text = "Score: 0"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbaymf0js8pvm"]
+[gd_scene load_steps=10 format=3 uid="uid://dbaymf0js8pvm"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_w73xf"]
 [ext_resource type="PackedScene" uid="uid://d3cm5ojkav182" path="res://scenes/walls.tscn" id="2_e5v75"]
@@ -7,13 +7,18 @@
 [ext_resource type="Script" path="res://scripts/controllers/score_controller.gd" id="5_uiaax"]
 [ext_resource type="Script" path="res://scripts/controllers/ui_controller.gd" id="6_2m8u1"]
 [ext_resource type="PackedScene" uid="uid://cjw0eau02rnum" path="res://scenes/trash_bin.tscn" id="7_q3hey"]
+[ext_resource type="Script" path="res://scripts/controllers/game_controller.gd" id="8_agi75"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s3xy0"]
+font_size = 48
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [node name="World" type="Node"]
 script = ExtResource("1_w73xf")
 
 [node name="Belt" parent="." instance=ExtResource("3_enb70")]
 position = Vector2(638, 577)
-BELT_SPEED = 1
 
 [node name="Walls" parent="." instance=ExtResource("2_e5v75")]
 
@@ -24,19 +29,53 @@ world = NodePath("..")
 script = ExtResource("5_uiaax")
 shape_spawner = NodePath("../ShapeSpawner")
 
-[node name="UIController" type="Control" parent="." node_paths=PackedStringArray("score_controller")]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="UIController" type="CanvasLayer" parent="." node_paths=PackedStringArray("score_controller")]
 script = ExtResource("6_2m8u1")
 score_controller = NodePath("../ScoreController")
 
 [node name="ScoreLabel" type="Label" parent="UIController"]
-layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Score:"
 
+[node name="GameOverScreen" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+
+[node name="GreyOver" type="ColorRect" parent="GameOverScreen"]
+self_modulate = Color(0.142653, 0.292143, 0.29226, 0.321569)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOverScreen"]
+self_modulate = Color(0.28485, 0.28485, 0.28485, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 0
+
+[node name="Label" type="Label" parent="GameOverScreen/CenterContainer"]
+layout_mode = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_s3xy0")
+
 [node name="TrashBin" parent="." instance=ExtResource("7_q3hey")]
 position = Vector2(1211, 412)
+
+[node name="GameController" type="Node" parent="." node_paths=PackedStringArray("score_controller", "game_over_screen")]
+script = ExtResource("8_agi75")
+score_controller = NodePath("../ScoreController")
+game_over_screen = NodePath("../GameOverScreen")
+enable = false
+
+[node name="Timer" type="Timer" parent="GameController"]
+wait_time = 5.0
+one_shot = true
+autostart = true
