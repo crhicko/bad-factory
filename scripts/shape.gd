@@ -1,3 +1,5 @@
+#TODO - find bug aroudn the layers - cant click and drag new shapes onto the treadmill
+
 extends RigidBody2D
 class_name Shape
 
@@ -59,7 +61,7 @@ func _on_click_box_area_exited(area: Area2D) -> void:
 	print_debug("its not droppable anymore")
 	if area is Dropbox:
 		droppable_target = null
-		
+
 func die(score: int):
 	print("IM DYING OVA HERE")
 	died.emit(self, score)
