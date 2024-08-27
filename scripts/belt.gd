@@ -26,10 +26,11 @@ func _on_item_received(area: Dropbox, body: Node2D, mouse_pos: Vector2) -> void:
 		self.add_child(body)
 		body.position = Vector2(mouse_pos.x - global_position.x, 0)
 		area.parent_node.z_index = 1
+		body.set_collision_layer_value(1, false)
 		if !on_belt.has(body):
 			on_belt.append(body)
-		body.set_collision_layer_value(1, false)
-		body.died.connect(_on_body_died)
+			body.died.connect(_on_body_died)
+		
 	elif on_belt.has(body):
 		on_belt.remove_at(on_belt.find(body))
 

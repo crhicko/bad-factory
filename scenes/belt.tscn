@@ -14,7 +14,7 @@ shader = ExtResource("1_pasvo")
 size = Vector2(56, 98)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ve14"]
-size = Vector2(1303, 59)
+size = Vector2(1303, 28)
 
 [node name="Belt" type="Node2D" node_paths=PackedStringArray("dropbox_component", "success_audio_player")]
 z_index = 1
@@ -41,7 +41,7 @@ shape = SubResource("RectangleShape2D_bjw43")
 parent_node = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DropboxComponent"]
-position = Vector2(-1.5, -0.5)
+position = Vector2(-1.5, 15)
 shape = SubResource("RectangleShape2D_0ve14")
 
 [node name="SuccessAudio" type="AudioStreamPlayer" parent="."]
