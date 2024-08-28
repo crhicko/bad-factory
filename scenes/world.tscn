@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://dbaymf0js8pvm"]
+[gd_scene load_steps=13 format=3 uid="uid://dbaymf0js8pvm"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_w73xf"]
-[ext_resource type="PackedScene" uid="uid://xj68qh4mouc4" path="res://scenes/walls.tscn" id="2_e5v75"]
+[ext_resource type="PackedScene" uid="uid://d3cm5ojkav182" path="res://scenes/walls.tscn" id="2_e5v75"]
 [ext_resource type="PackedScene" uid="uid://wer5cy6da82u" path="res://scenes/belt.tscn" id="3_enb70"]
-[ext_resource type="PackedScene" uid="uid://rsh8egq4v8gt" path="res://scenes/shape_spawner.tscn" id="3_y0oc1"]
+[ext_resource type="PackedScene" uid="uid://cxfsft1o3nlfh" path="res://scenes/shape_spawner.tscn" id="3_y0oc1"]
+[ext_resource type="PackedScene" uid="uid://bj62gd16rmxin" path="res://scenes/shape.tscn" id="5_aqrh1"]
 [ext_resource type="Script" path="res://scripts/controllers/score_controller.gd" id="5_uiaax"]
+[ext_resource type="PackedScene" uid="uid://b5tmxxfs8gnb" path="res://scenes/triangle_shape.tscn" id="5_wm3bt"]
 [ext_resource type="Script" path="res://scripts/controllers/ui_controller.gd" id="6_2m8u1"]
+[ext_resource type="PackedScene" uid="uid://cl7lscxvibhf1" path="res://scenes/hexagon_shape.tscn" id="7_7ir6o"]
 [ext_resource type="PackedScene" uid="uid://cjw0eau02rnum" path="res://scenes/trash_bin.tscn" id="7_q3hey"]
 [ext_resource type="Script" path="res://scripts/controllers/game_controller.gd" id="8_agi75"]
 
@@ -23,6 +26,7 @@ position = Vector2(638, 577)
 [node name="Walls" parent="." instance=ExtResource("2_e5v75")]
 
 [node name="ShapeSpawner" parent="." node_paths=PackedStringArray("world") instance=ExtResource("3_y0oc1")]
+shapesToSpawn = Array[PackedScene]([ExtResource("5_wm3bt"), ExtResource("5_aqrh1"), ExtResource("7_7ir6o")])
 world = NodePath("..")
 
 [node name="ScoreController" type="Node" parent="." node_paths=PackedStringArray("shape_spawner")]

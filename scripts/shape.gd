@@ -37,8 +37,6 @@ func _on_click_box_input_event(viewport: Node, event: InputEvent, shape_idx: int
 			is_dragging = true
 		else:
 			is_dragging = false
-			#self.z_index = 1
-			#set_collision_mask_value(1, true)
 			if droppable_target != null:
 				drop_in(droppable_target, event.global_position)
 			### Velocity is maintained from the belt so to stop it freaking out when dragging it off, reset its velocity
